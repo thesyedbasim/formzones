@@ -28,7 +28,7 @@ Sign in at [FormZones](https://formzones.vercel.app).
 
 ### 4. Sending Data
 
-#### API Endpoint
+#### Discord API Endpoint
 Send your POST API requests to the unique link provided by FormZones. The endpoint format is:
 ```https://formzones.vercel.app/api/discord?webhook_id=YOUR_WEBHOOK_ID&webhook_token=YOUR_WEBHOOK_TOKEN&access_token=YOUR_ACCESS_TOKEN```
 
@@ -62,3 +62,7 @@ fetch('YOUR_GENERATED_LINK_HERE', {
 ## Contribution & Support
 
 For feedback, suggestions, or support, please open an issue or pull request on the GitHub repository.
+
+## LICENSE
+
+This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/thesyedbasim/formzones/blob/main/LICENSE) file for details.
