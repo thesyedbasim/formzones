@@ -1,12 +1,12 @@
-import { invalidBodyResponse } from '@/lib/api_utils';
+import {
+  invalidBodyResponse,
+  invalidRequestParamsResponse,
+} from '@/lib/utils/api/responses';
 import { NextRequest } from 'next/server';
-
-export const successMessageDisocordResponse = () => {
-  return Response.json(
-    { message: 'Message sent to the channel!' },
-    { status: 200 }
-  );
-};
+import { successMessageDisocordResponse } from './responses';
+import z from 'zod';
+import { FunctionApiHandlerReturnType } from '@/lib/types/functionApiHandlers';
+import { DiscordWebhookSearchParams } from '@/lib/types/discord';
 
 export const constructDiscordApiUrl = (
   webhook_id: string,
@@ -76,4 +76,25 @@ export const handleJsonDataDiscord = async (
   } catch (err) {
     return [null, invalidBodyResponse()];
   }
+};
+
+export const validateDiscordWebhookSearchParams = (
+  searchParams: URLSearchParams
+): FunctionApiHandlerReturnType<DiscordWebhookSearchParams> => {
+  const schema = z.object({
+    webhook_id: z.string(),
+    webhook_token: z.string(),
+    access_token: z.string(),
+  });
+
+  const reqParams = {
+    webhook_id: searchParams.get('webhook_id'),
+    webhook_token: searchParams.get('webhook_token'),
+    access_token: searchParams.get('access_token'),
+  };
+
+  const { success: isSchemaValid } = schema.safeParse(reqParams);
+  if (!isSchemaValid) return [null, invalidRequestParamsResponse()];
+
+  return [reqParams as DiscordWebhookSearchParams, null];
 };
