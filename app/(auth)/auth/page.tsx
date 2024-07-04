@@ -16,7 +16,7 @@ export default function AuthPage() {
 
   if (error) return <p className="">Some error occured!</p>;
 
-  if (user) return router.replace('/');
+  if (user) return router.replace('/dashboard');
 
   return (
     <main className="w-full h-[100dvh] h-[100vh] flex justify-center items-center">
