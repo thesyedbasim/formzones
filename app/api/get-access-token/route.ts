@@ -1,4 +1,4 @@
-import { createBearerToken } from '@/lib/api/api_utils';
+import { createBearerToken } from '@/lib/utils/api';
 import {
   getDbUserDetailsFromUid,
   verifyIdToken,
