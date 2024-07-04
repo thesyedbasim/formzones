@@ -12,3 +12,7 @@ export const invalidBodyContentTypeResponse = () => {
     { status: 400 }
   );
 };
+
+export const notAuthenticatedReponse = () => {
+  return Response.json({ message: 'Please authenticate.' }, { status: 401 });
+};
