@@ -1,9 +1,10 @@
+import { app } from '.';
 import { notAuthenticatedReponse } from '@/lib/utils/api/responses';
 import { db } from './db';
 import { DecodedIdToken, getAuth } from 'firebase-admin/auth';
 import { FieldValue } from 'firebase-admin/firestore';
 
-export const auth = getAuth();
+export const auth = getAuth(app);
 
 const getAuthUserDetailsFromUid = async (userUid: string) => {
   const user = await auth.getUser(userUid);
